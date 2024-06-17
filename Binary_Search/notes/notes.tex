@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{background}
+
+\title{Notas de Búsqueda Binaria}
+\author{Jorge Tapia}
+\date{\today}
+
+% Configuración de los márgenes de la página
+\geometry{
+    left=2cm,
+    right=2cm,
+    top=2cm,
+    bottom=2cm,
+}
+
+% Definir el color del borde
+\definecolor{bordercolor}{RGB}{0,0,0}
+
+% Configuración del borde
+\backgroundsetup{
+    scale=1,
+    color=black,
+    opacity=1,
+    angle=0,
+    pages=some,
+    contents={
+        \begin{tikzpicture}[remember picture,overlay]
+            \draw [line width=3pt,color=bordercolor]
+                ($ (current page.north west) + (1.5cm,-1.5cm) $)
+                rectangle
+                ($ (current page.south east) + (-1.5cm,1.5cm) $);
+        \end{tikzpicture}
+    }
+}
+
+\begin{document}
+\maketitle
+\section{Interesting drink \href{https://codeforces.com/contest/705/problem/B}{\textcolor{blue}{(Link)}}}
+\textbf{Etiquetas}: Binary search \\
+En resumen, en este problema solo se trata de ordenar en orden no decreciente y encontrar el menor número que sea mayor o 
+igual a cada consulta \( q_i \), ya que esa será la cantidad de bebidas que podrá tomar.
+En otras palabras, solo necesitas hacer un \textbf{Upperbound} para cada consulta \( q_i \).
+\section{Maximum Median \href{https://codeforces.com/contest/1201/problem/C}{\textcolor{blue}{(Link)}}}
+\textbf{Etiquetas}: Binary search \\
+Este problema consiste en hallar el numero máximo del la mediana aumentado \(a_i + 1\) hasta máximo $k$ operaciones, entonces lo que hay que hacer es no pasarse del rango $k$ haciendo la siguiente sumatoria a cada paso de la búsqueda binaria en otras palabras:
+    \begin{equation*}
+        \sum_{i=(n+1)/2}^{n} max(0,x-b_i)
+    \end{equation*}
+    
+\end{document}
+
