@@ -21,11 +21,37 @@ using namespace std;
 using i32=int32_t;
 using i64=int64_t;
 template<typename T> using V=vector<T>;
-
+struct unionFind {
+  V<int> p;
+  unionFind(int n) : p(n, -1) {} //init 
+  int findParent(int v) {
+    if (p[v] == -1) return v;
+    return p[v] = findParent(p[v]);
+  }
+  bool join(int a, int b) {
+    a = findParent(a);
+    b = findParent(b);
+    if (a == b) return false;
+    p[a] = b;
+    return true;
+  }
+};
 auto solve()->void{
     i32 n,m; cin>>n>>m; 
-    string s; cin>>S; 
-
+    unionFind dsu(n);
+    while(m--){
+        string x; cin>>x; 
+        if(x=="union"){
+            i32 u,v; cin>>u>>v; 
+            u--,v--;
+            dsu.join(u,v); 
+        }
+        if(x=="get"){
+            i32 u,v; cin>>u>>v; 
+            u--,v--;
+            cout<<(dsu.findParent(u)==dsu.findParent(v)?"YES":"NO")<<LN;
+        }
+    }
 }
 auto main()->signed{
     cin.tie(nullptr)->sync_with_stdio(0);
